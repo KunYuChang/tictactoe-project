@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import Square from "./Square";
+import React from 'react';
+import Square from './Square';
 
-function Board({ board, handleSqareClick }) {
-  const renderSquare = (position) => {
+const Board = ({ board, handleSquareClick, winningSquares }) => {
+  const renderSquare = position => {
+    const isWinningSquare = winningSquares.includes(position);
+
     return (
       <Square
         value={board[position]}
-        onClick={() => {
-          handleSqareClick(position);
-        }}
+        onClick={() => handleSquareClick(position)}
+        isWinningSquare={isWinningSquare}
       />
     );
   };
@@ -32,6 +33,6 @@ function Board({ board, handleSqareClick }) {
       </div>
     </div>
   );
-}
+};
 
 export default Board;
